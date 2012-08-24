@@ -1,4 +1,3 @@
-# require File.expand_path(File.dirname(__FILE__) + 'spec_helper')
 require 'spec_helper'
 
 describe 'Conversion protocol' do
@@ -8,6 +7,11 @@ describe 'Conversion protocol' do
 
   it "converts a float to a BigDecimal" do
     1.23.to_bd.should == BigDecimal('1.23')
+  end
+
+  it "converts a BigDecimal to a BigDecimal" do
+    foo = BigDecimal('42')
+    foo.to_bd.should == foo
   end
 
   it "converts a BigDecimal to itself" do
