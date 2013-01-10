@@ -4,7 +4,7 @@
 
 class Object
   def to_bd
-    BigDecimal.new(self.to_s)
+    BigDecimal.new(self.to_s.gsub(/[^\d\.]/, ''))
   end
 end
 

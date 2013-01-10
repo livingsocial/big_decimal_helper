@@ -18,4 +18,16 @@ describe 'Conversion protocol' do
     foo = BigDecimal('42')
     foo.to_bd.should be(foo)
   end
+
+  it "converts a string with commas to a BigDecimal" do
+    '42,000'.to_bd.should == BigDecimal('42000')
+  end
+
+  it "converts a string with dollar signs to a BigDecimal" do
+    '$42,000'.to_bd.should == BigDecimal('42000')
+  end
+
+  it "doesn't drop decimals either" do
+    '$42,000.42'.to_bd.should == BigDecimal('42000.42')
+  end
 end
