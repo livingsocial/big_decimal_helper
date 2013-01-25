@@ -30,4 +30,8 @@ describe 'Conversion protocol' do
   it "doesn't drop decimals either" do
     '$42,000.42'.to_bd.should == BigDecimal('42000.42')
   end
+
+  it "groks negative numbers" do # oops
+    '-42,000.42'.to_bd.should == BigDecimal('-42000.42')
+  end
 end
