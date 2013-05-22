@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = BigDecimalHelper::VERSION
 
+  gem.add_development_dependency 'rake', '~> 0.9.2.2'
   gem.add_development_dependency 'rspec', '~> 2.11.0'
   gem.add_development_dependency 'nyan-cat-formatter'
 end
