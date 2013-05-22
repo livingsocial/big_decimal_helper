@@ -3,12 +3,16 @@
 
 class BigDecimal
   def inspect
+    # Sign
+    sign = self < 0 ? '-' : ''
+
     # Math
     integer  = self > 0 ? floor.to_i : ceil.to_i
     fraction = (self - integer).abs
 
     # Commas
     int_part = integer \
+      .abs \
       .to_s \
       .reverse \
       .scan(/(?:\d*\.)?\d{1,3}-?/) \
@@ -26,6 +30,6 @@ class BigDecimal
       end
 
     # Template
-    '#<BigDecimal: %s>' % [ int_part, dec_part ].join
+    '#<BigDecimal: %s>' % [ sign, int_part, dec_part ].join
   end
 end

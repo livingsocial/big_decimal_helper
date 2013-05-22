@@ -9,6 +9,10 @@ describe 'Pretty #inspect' do
     expect(format(-1.23)).to eq('#<BigDecimal: -1.23>')
   end
 
+  it "groks negative numbers, even small ones" do
+    expect(format(-0.5)).to eq('#<BigDecimal: -0.5>')
+  end
+
   it "inserts commas left of the decimal point" do
     expect(format(1234)).to eq('#<BigDecimal: 1,234>')
   end
