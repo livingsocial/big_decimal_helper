@@ -3,33 +3,35 @@
 
 class BigDecimal
   def inspect
-    # Sign
-    sign = self < 0 ? '-' : ''
+    BigDecimalHelper.pretty_inspect(self)
+  end
+end
 
-    # Math
-    integer  = self > 0 ? floor.to_i : ceil.to_i
-    fraction = (self - integer).abs
 
-    # Commas
-    int_part = integer \
-      .abs \
+module BigDecimalHelper
+  def self.pretty_inspect(bd)
+    "#<BigDecimal: #{string_for_pretty_inspect(bd)}>"
+  end
+
+  private
+
+  def self.string_for_pretty_inspect(bd)
+
+    # Lean on the Float class for basic formatting, but drop the trailing '.0'
+    s = bd.to_f.to_s.gsub(/\.0$/, '')
+
+    # Add commas to the integer part
+    int_part, dec_part = s.split('.')
+    int_part = int_part \
       .to_s \
       .reverse \
       .scan(/(?:\.)?\d{1,3}-?/) \
       .join(',') \
       .reverse
 
-    # Trailing decimals, if any
-    dec_part = \
-      if fraction.zero?
-        ''
-      else
-        fraction.to_s \
-          .gsub(/^0/, '') \
-          .gsub(/E\d+$/, '')
-      end
-
-    # Template
-    '#<BigDecimal: %s>' % [ sign, int_part, dec_part ].join
+    # Put it all back together
+    dec_part = '.' + dec_part unless dec_part.nil?
+    [ int_part, dec_part ].join
   end
 end
+
