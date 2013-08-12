@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe 'Pretty #inspect' do
+  it "handles NaN" do
+    expect(format(0       / 0.to_bd)).to eq('#<BigDecimal: NaN>')
+    expect(format(0.to_bd / 0      )).to eq('#<BigDecimal: NaN>')
+    expect(format(0.to_bd / 0.to_bd)).to eq('#<BigDecimal: NaN>')
+  end
+
+  it "handles Infinity" do
+    expect(format(1       / 0.to_bd)).to eq('#<BigDecimal: Infinity>')
+    expect(format(1.to_bd / 0      )).to eq('#<BigDecimal: Infinity>')
+    expect(format(1.to_bd / 0.to_bd)).to eq('#<BigDecimal: Infinity>')
+  end
+
+  it "handles -Infinity" do
+    expect(format(-1       / 0.to_bd)).to eq('#<BigDecimal: -Infinity>')
+    expect(format(-1.to_bd / 0      )).to eq('#<BigDecimal: -Infinity>')
+    expect(format(-1.to_bd / 0.to_bd)).to eq('#<BigDecimal: -Infinity>')
+  end
+
   it "doesn't use pseudoscientific notation" do
     expect(format(1.23)).to eq('#<BigDecimal: 1.23>')
   end

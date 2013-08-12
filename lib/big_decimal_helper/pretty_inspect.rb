@@ -16,6 +16,8 @@ module BigDecimalHelper
   private
 
   def self.string_for_pretty_inspect(bd)
+    # Just use to_s for exceptional values
+    return bd.to_s if bd.nan? || bd.infinite?
 
     # Lean on the Float class for basic formatting, but drop the trailing '.0'
     s = bd.to_f.to_s.gsub(/\.0$/, '')
