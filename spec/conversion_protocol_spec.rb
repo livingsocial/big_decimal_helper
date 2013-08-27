@@ -39,6 +39,10 @@ describe 'Conversion protocol' do
   end
 
   describe "for other types" do
+    it "converts nil to zero, a la #to_i and #to_f" do
+      expect(nil.to_bd).to eq(BigDecimal('0'))
+    end
+
     it "won't even try to convert an Array to a BigDecimal" do
       expect { %w[ 1 2 3 go ].to_bd }.to raise_error(NoMethodError)
     end

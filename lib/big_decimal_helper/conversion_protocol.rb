@@ -24,3 +24,4 @@ BigDecimal.send :include, BigDecimalHelper::ConversionProtocol::Self
 Fixnum    .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
 Float     .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
 String    .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
+NilClass  .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
