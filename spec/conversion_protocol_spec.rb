@@ -37,4 +37,10 @@ describe 'Conversion protocol' do
       '-42,000.42'.to_bd.should == BigDecimal('-42000.42')
     end
   end
+
+  describe "for other types" do
+    it "won't even try to convert an Array to a BigDecimal" do
+      expect { %w[ 1 2 3 go ].to_bd }.to raise_error(NoMethodError)
+    end
+  end
 end

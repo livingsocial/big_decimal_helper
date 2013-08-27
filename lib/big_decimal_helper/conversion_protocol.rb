@@ -21,4 +21,6 @@ module BigDecimalHelper
 end
 
 BigDecimal.send :include, BigDecimalHelper::ConversionProtocol::Self
-Object    .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
+Fixnum    .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
+Float     .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
+String    .send :include, BigDecimalHelper::ConversionProtocol::ViaStringRepresentation
