@@ -13,11 +13,11 @@ require File.join(File.dirname(__FILE__), *%w[.. lib big_decimal_helper has_big_
 
 describe 'ActiveRecord mixin' do
   it 'gets mixed in to ActiveRecord::Base' do
-    ActiveRecord::Base.should be_kind_of(BigDecimalHelper::HasBigDecimalField)
+    expect(ActiveRecord::Base).to be_kind_of( BigDecimalHelper::HasBigDecimalField )
   end
 
   it 'adds a .has_big_decimal_field method that invokes .composed_of' do
-    ActiveRecord::Base.should_receive(:composed_of)
+    expect(ActiveRecord::Base).to receive( :composed_of )
     ActiveRecord::Base.class_eval do
       has_big_decimal_field :foo
     end
