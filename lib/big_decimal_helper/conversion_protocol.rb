@@ -1,9 +1,8 @@
-# Defines a conversion protocol for BigDecimal that is
-# (a) easier to type than { BigDecimal(something.to_s), and
-# (b) idempotent by virtue of being lazy
-# (c) restricted to a few known types
-
 module BigDecimalHelper
+  # Defines a conversion protocol for BigDecimal that is
+  # (a) easier to type than { BigDecimal(something.to_s) }
+  # (b) idempotent (by virtue of being lazy^H^H returning self when called on BigDecimal)
+  # (c) restricted to a few known types
   module ConversionProtocol
     module Self
       def to_bd
