@@ -7,11 +7,11 @@ unless defined?(ActiveRecord::Base)
   end
 end
 
-# Deliberately require the file again with a different path, now that the target class is defined
-require File.join(File.dirname(__FILE__), *%w[.. lib big_decimal_helper has_big_decimal_field])
-
-
 describe 'ActiveRecord mixin' do
+  before(:all) do
+    BigDecimalHelper.add_active_record_macro!
+  end
+
   it 'gets mixed in to ActiveRecord::Base' do
     expect(ActiveRecord::Base).to be_kind_of( BigDecimalHelper::HasBigDecimalField )
   end

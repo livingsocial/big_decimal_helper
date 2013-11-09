@@ -9,8 +9,12 @@ module BigDecimalHelper
         :converter   => Proc.new {|x| x.to_bd }
     end
   end
+
+  def self.add_active_record_macro!
+    return unless defined?( ActiveRecord::Base )
+    return if ActiveRecord::Base.kind_of?( BigDecimalHelper::HasBigDecimalField )
+    ActiveRecord::Base.send :extend, BigDecimalHelper::HasBigDecimalField
+  end
 end
 
-if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.send :extend, BigDecimalHelper::HasBigDecimalField
-end
+BigDecimalHelper.add_active_record_macro!
