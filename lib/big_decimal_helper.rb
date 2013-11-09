@@ -1,9 +1,15 @@
 require 'bigdecimal'
-require File.expand_path(File.join(File.dirname(__FILE__), *%w[big_decimal_helper version]))
-require 'big_decimal_helper/conversion_protocol'
-require 'big_decimal_helper/pretty_inspect'
-require 'big_decimal_helper/has_big_decimal_field'
-require 'big_decimal_helper/comparisons'
 
 module BigDecimalHelper
 end
+
+require 'pathname'
+lib_path = File.expand_path(File.join(File.dirname(__FILE__), 'big_decimal_helper' ))
+lib_path = Pathname.new( lib_path )
+
+require lib_path.join( 'version' )
+require lib_path.join( 'conversion_protocol' )
+require lib_path.join( 'pretty_inspect' )
+require lib_path.join( 'has_big_decimal_field' )
+require lib_path.join( 'comparisons' )
+
