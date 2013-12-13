@@ -25,7 +25,7 @@ Or install it yourself as:
 
 ## Usage
 
-You'll be able to call <code>#to_bd</code> on any (reasonable) object to ensure that you have a BigDecimal.
+You'll be able to call <code>#to_bd</code> on any Fixnum, Float, String, or BigDecimal to ensure that you have a BigDecimal.  <code>nil.to_bd</code> is also defined, and works similarly to <code>nil.to_f</code> or <code>nil.to_i</code>.
 
 Also, if you have a field whose underlying type you can't change, but you want it to be automatically coerced to a BigDecimal, do this:
 
@@ -34,6 +34,8 @@ Also, if you have a field whose underlying type you can't change, but you want i
     end
 
 This just calls <code>.composed_of</code> behind the scenes, but since I can never remember how to use that API, I wrapped it in a more intention-revealing macro.
+
+(*NOTE:*  This gem does not declare a dependency on ActiveRecord.  If this gem loads before ActiveRecord does, that macro won't automatically appear.  Should this happen to you, just add <code>BigDecimalHelper.add_active_record_macro!</code> to <code>config/initializers/big_decimal_helper.rb</code> in your Rails project.)
 
 ## Contributing
 
