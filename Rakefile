@@ -10,13 +10,3 @@ RSpec::Core::RakeTask.new do |t|
   t.pattern = './spec/**/*_spec.rb' # don't need this, it's default.
   # Put spec opts in a file named .rspec in root
 end
-
-# Don't push to rubygems.org, thanks
-module Bundler
-  class GemHelper
-    protected
-    def rubygem_push(path)
-      puts "This is me, *not* pushing to rubygems. Aren't you glad?"
-    end
-  end
-end

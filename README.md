@@ -9,6 +9,12 @@ Helpers for working with BigDecimals in Rails apps.
 * Provides an <code>ActiveRecord::Base.has_big_decimal_field</code> macro to automatically convert various fields to BigDecimal.
 * Provides some convenience methods for finding the min and max of a list that might possibly include NaN values.  (This can cause some bugs that are extremely annoying to track down.)
 
+## A Note About Versions
+
+As of 2.0.4, this gem will be published to rubygems.org.  Earlier
+versions were published internally to LivingSocial.  You're
+welcome to build them locally, if you're into that sort of thing.
+
 ## Installation
 
 Add this line to your application's Gemfile:
